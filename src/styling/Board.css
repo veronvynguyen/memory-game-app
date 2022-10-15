@@ -1,0 +1,19 @@
+.container--4x4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.container--6x6 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.card {
+    background-color: yellow;
+}
+
+.card--selected {
+    background-color: blue;
+}
