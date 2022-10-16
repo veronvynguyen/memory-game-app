@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import '../styling/Board.css';
 
 export interface BoardProps {
   choices: Choice[];
-  theme?: Theme;
-  numOfPlayers?: number;
-  gridSize?: string;
 }
 
 export interface BoardState {
@@ -19,13 +17,15 @@ export type Choice = {
   selected: boolean;
 };
 
-export type Theme = 'numbers' | 'icons';
-
 export default function Board(props: BoardProps, state: BoardState) {
-  const { choices, gridSize } = props;
+  const { choices } = props;
 
   const [data, setData] = useState([] as Choice[]);
   const [currentPair, setCurrentPair] = useState([] as Choice[]);
+
+  const location = useLocation();
+  const theme = location.state.selectedTheme;
+  const gridSize = location.state.selectedGridSize;
 
   useEffect(() => {
     if (!data.length) {
@@ -76,10 +76,4 @@ export default function Board(props: BoardProps, state: BoardState) {
       })}
     </div>
   );
-}
-
-Board.defaultProps = {
-  theme: 'numbers',
-  numOfPlayers: 1,
-  gridSize: '4x4'
 }
